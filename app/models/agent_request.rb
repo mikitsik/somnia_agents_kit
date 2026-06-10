@@ -1,12 +1,6 @@
 # frozen_string_literal: true
 
 class AgentRequest < ApplicationRecord
-  AGENT_IDS = {
-    'json_api_request' => '13174292974160097713',
-    'llm_parse_website' => '12875401142070969085',
-    'llm_inference' => '12847293847561029384'
-  }.freeze
-
   STATUSES = %w[
     draft
     requested
@@ -15,7 +9,10 @@ class AgentRequest < ApplicationRecord
     failed
   ].freeze
 
-  validates :agent_kind, presence: true, inclusion: { in: AGENT_IDS.keys }
+  validates :agent_kind,
+            presence: true,
+            inclusion: { in: SomniaAgentsKit::AgentIds.keys }
+
   validates :agent_id, presence: true
   validates :status, presence: true, inclusion: { in: STATUSES }
   validates :payload, presence: true
@@ -33,6 +30,9 @@ class AgentRequest < ApplicationRecord
   private
 
   def set_agent_id
+    return if agent_kind.blank?
+    return unless SomniaAgentsKit::AgentIds.valid?(agent_kind)
+
     self.agent_id ||= SomniaAgentsKit::AgentIds.fetch(agent_kind)
   end
 end

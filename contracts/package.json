@@ -1,17 +1,17 @@
 {
-  "name": "contracts",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "somnia-agents-kit-contracts",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Hardhat contract layer for SomniaAgentsKit",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "hardhat compile",
+    "deploy:callback": "hardhat run scripts/deploy_callback_receiver.js --network somniaShannon",
+    "request:agent": "hardhat run scripts/request_agent.js --network somniaShannon"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^6.1.2",
+    "@nomicfoundation/hardhat-ethers": "^3.1.0",
     "dotenv": "^17.4.2",
-    "hardhat": "^2.28.6"
+    "ethers": "^6.15.0",
+    "hardhat": "^2.28.0"
   }
 }
