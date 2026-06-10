@@ -33,6 +33,6 @@ class AgentRequest < ApplicationRecord
   private
 
   def set_agent_id
-    self.agent_id ||= AGENT_IDS[agent_kind]
+    self.agent_id ||= SomniaAgentsKit::AgentIds.fetch(agent_kind)
   end
 end
