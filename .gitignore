@@ -36,3 +36,19 @@
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+# Hardhat / Solidity
+/contracts/node_modules/
+/contracts/artifacts/
+/contracts/cache/
+/contracts/coverage/
+/contracts/typechain-types/
+/contracts/.openzeppelin/
+/contracts/deployments/
+/contracts/flattened/
+/contracts/*.bak
+
+# Contract secrets
+/contracts/.env
+/contracts/.env.*
+!/contracts/.env.example
